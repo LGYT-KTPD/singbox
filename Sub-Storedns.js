@@ -87,15 +87,6 @@ config.outbounds.forEach(outbound => {
   }
 });
 
-// 添加禁止IPv6流量的规则
-const ipv6RejectRule = {
-  "ip_version": 6,
-  "action": "reject"
-};
-
-// 将 IPv6 拒绝规则加入到配置中
-config.route.rules.push(ipv6RejectRule);
-
 // 更新配置并输出
 $content = JSON.stringify(config, null, 2);
 
