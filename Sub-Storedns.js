@@ -2,8 +2,8 @@
 // 默认：type=1（collection），name=singbox
 // 也支持 name 传多个（逗号/竖线/空格分隔），会合并并按 tag 去重
 
-const _typeRaw = String(($arguments.type || '1')).toLowerCase().trim();
-const _nameRaw = ($arguments.name || 'singbox').trim();
+const _typeRaw = String(($arguments.type || '1')).toLowerCase().trim();  // 加分号
+const _nameRaw = ($arguments.name || 'singbox').trim();  // 加分号
 const isCollection = /^1$|col|collection/.test(_typeRaw);
 
 // 允许 name 传多个：SSRDOG,MMyun  或  SSRDOG|MMyun  或  "SSRDOG MMyun"
@@ -93,6 +93,7 @@ const ipv6RejectRule = {
   "action": "reject"
 };
 
+// 将 IPv6 拒绝规则加入到配置中
 config.route.rules.push(ipv6RejectRule);
 
 // 更新配置并输出
