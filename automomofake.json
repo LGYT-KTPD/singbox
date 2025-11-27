@@ -36,25 +36,26 @@
         "♻️ 自动选择"
       ]
     },
-
-    { "tag": "🇭🇰 香港手动", "type": "selector", "outbounds": [] },
-    { "tag": "🇭🇰 香港自动", "type": "urltest",  "outbounds": [] },
-
-    { "tag": "🇯🇵 日本手动", "type": "selector", "outbounds": [] },
-    { "tag": "🇯🇵 日本自动", "type": "urltest",  "outbounds": [] },
-
-    { "tag": "🇸🇬 狮城手动", "type": "selector", "outbounds": [] },
-    { "tag": "🇸🇬 狮城自动", "type": "urltest",  "outbounds": [] },
-
-    { "tag": "🇺🇲 美国手动", "type": "selector", "outbounds": [] },
-    { "tag": "🇺🇲 美国自动", "type": "urltest",  "outbounds": [] },
-
-    { "tag": "🐸 手动选择", "type": "selector", "outbounds": [] },
-    { "tag": "♻️ 自动选择", "type": "urltest",  "outbounds": [] },
-
-    { "tag": "🍃 延迟辅助", "type": "urltest", "outbounds": ["🚀 默认代理", "🎯 全球直连"] },
-    { "tag": "GLOBAL",      "type": "selector", "outbounds": ["🚀 默认代理", "🐸 手动选择", "♻️ 自动选择", "🍃 延迟辅助", "🎯 全球直连"] },
-    { "tag": "🎯 全球直连", "type": "direct" }
+    {
+      "tag": "🇭🇰 香港手动",
+      "type": "selector",
+      "outbounds": []
+    },
+    {
+      "tag": "🇯🇵 日本手动",
+      "type": "selector",
+      "outbounds": []
+    },
+    {
+      "tag": "🇸🇬 狮城手动",
+      "type": "selector",
+      "outbounds": []
+    },
+    {
+      "tag": "🇺🇲 美国手动",
+      "type": "selector",
+      "outbounds": []
+    }
   ],
 
   "route": {
@@ -63,68 +64,16 @@
       {"inbound": "dns-in", "action": "hijack-dns"},
       {"ip_is_private": true, "outbound": "🎯 全球直连"},
       {"clash_mode": "direct", "outbound": "🎯 全球直连"},
-      {"clash_mode": "global", "outbound": "GLOBAL"},
-
-      {"rule_set": "geosite-ai",        "outbound": "🧠 AI"},
-      {"rule_set": "geosite-youtube",   "outbound": "📹 YouTube"},
-      {"rule_set": "geosite-google",    "outbound": "🍀 Google"},
-      {"rule_set": "geosite-github",    "outbound": "👨‍💻 Github"},
-      {"rule_set": "geosite-onedrive",  "outbound": "🐬 OneDrive"},
-      {"rule_set": "geosite-microsoft", "outbound": "🪟 Microsoft"},
-      {"rule_set": "geosite-apple",     "outbound": "🍏 Apple"},
-      {"rule_set": "geosite-telegram",  "outbound": "📲 Telegram"},
-      {"rule_set": "geosite-tiktok",    "outbound": "🎵 TikTok"},
-      {"rule_set": "geosite-netflix",   "outbound": "🎥 Netflix"},
-      {"rule_set": "geosite-paypal",    "outbound": "💶 PayPal"},
-      {"rule_set": "geosite-steamcn",   "outbound": "🎯 全球直连"},
-      {"rule_set": "geosite-steam",     "outbound": "🎮 Steam"},
-      {"rule_set": "geosite-!cn",       "outbound": "🚀 默认代理"},
-      {"rule_set": "geosite-cn",        "outbound": "🎯 全球直连"},
-
-      {"action": "resolve"},
-      {"rule_set": "geoip-google",   "outbound": "🍀 Google"},
-      {"rule_set": "geoip-apple",    "outbound": "🍏 Apple"},
-      {"rule_set": "geoip-telegram", "outbound": "📲 Telegram"},
-      {"rule_set": "geoip-netflix",  "outbound": "🎥 Netflix"},
-      {"rule_set": "geoip-cn",       "outbound": "🎯 全球直连"}
-    ],
-    "rule_set": [
-      { "tag": "geosite-ai",       "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-ai-!cn.srs",       "download_detour": "🎯 全球直连" },
-      { "tag": "geosite-youtube",  "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/youtube.srs",               "download_detour": "🎯 全球直连" },
-      { "tag": "geosite-google",   "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/google.srs",                "download_detour": "🎯 全球直连" },
-      { "tag": "geosite-github",   "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/github.srs",                "download_detour": "🎯 全球直连" },
-      ...
-      { "tag": "geoip-cn",         "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://github.com/qljsyph/ruleset-icon/raw/refs/heads/main/sing-box/geoip/China-ASN-combined-ip.srs", "download_detour": "🎯 全球直连" }
-    ],
-    "final": "🐠 漏网之鱼",
-    "default_domain_resolver": { "server": "public" }
+      {"clash_mode": "global", "outbound": "GLOBAL"}
+    ]
   },
 
   "inbounds": [
-    { "tag": "dns-in",   "type": "direct",  "listen": "::", "listen_port": 1053 },
-    { "tag": "http-in",  "type": "http",    "listen": "::", "listen_port": 8080 },
-    { "tag": "socks-in", "type": "socks",   "listen": "::", "listen_port": 1080 },
-    { "tag": "redirect-in", "type": "redirect", "listen": "::", "listen_port": 7890 },
-    { "tag": "tproxy-in",   "type": "tproxy",   "listen": "::", "listen_port": 7891 },
-    {
-      "tag": "tun-in",
-      "type": "tun",
-      "interface_name": "momo",
-      "address": [
-        "172.31.0.1/30",
-        "fdfe:dcba:9876::1/126"
-      ],
-      "auto_route": false,
-      "auto_redirect": false
-    }
+    {"tag": "dns-in", "type": "direct", "listen": "::", "listen_port": 1053},
+    {"tag": "http-in", "type": "http", "listen": "::", "listen_port": 8080}
   ],
 
   "experimental": {
-    "cache_file": {
-      "enabled": true,
-      "path": "/etc/momo/run/cache.db",
-      "store_fakeip": true
-    },
     "clash_api": {
       "external_controller": "0.0.0.0:9095",
       "external_ui": "/etc/momo/run/ui",
